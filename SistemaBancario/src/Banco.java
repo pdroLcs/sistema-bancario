@@ -52,7 +52,7 @@ public class Banco {
         Conta conta = new Conta(clientes.get(id), agencia, tipo);
         contas.put(proximoNumeroConta, conta);
         System.out.printf("Conta criada: Número: %d | Tipo: %s\n",
-                proximoNumeroConta, tipo.name());
+                conta.getNumeroConta(), tipo.name());
         proximoNumeroConta++;
         /*
          * if (!clientes.containsKey(idCliente)) {
@@ -73,6 +73,52 @@ public class Banco {
             System.out.printf("Conta: %d | ID do cliente: %d | Tipo: %s\n", c.getNumeroConta(), c.getDono().getId(),
                     c.getTipo().name());
         }
+    }
+
+    public static Conta encontrarConta(int id) {
+        for (Conta c : contas.values()) {
+            if (c.getNumeroConta() == id) {
+                return c;
+            }
+        }
+        throw new IllegalArgumentException("Conta não encontrada!");
+    }
+
+    public static void infoConta() {
+        System.out.print("Digite o número da conta: ");
+        int numero = input.nextInt();
+        Conta conta = Banco.encontrarConta(numero);
+        System.out.println(conta.toString());
+    }
+
+    public static void sacar() {
+        System.out.print("Digite o número da conta: ");
+        int numero = input.nextInt();
+        Conta conta = encontrarConta(numero);
+        System.out.print("Digite o valor para sacar: ");
+        float valor = input.nextFloat();
+        conta.sacar(valor);
+    }
+
+    public static void depositar() {
+        System.out.print("Digite o número da conta: ");
+        int numero = input.nextInt();
+        Conta conta = encontrarConta(numero);
+        System.out.print("Digite o valor para depositar: ");
+        float valor = input.nextFloat();
+        conta.depositar(valor);
+    }
+
+    public static void tranferir() {
+        System.out.print("Digite o número da conta origem: ");
+        int numeroOrigem = input.nextInt();
+        Conta contaOrigem = encontrarConta(numeroOrigem);
+        System.out.print("Digite o número da conta destino: ");
+        int numeroDestino = input.nextInt();
+        Conta contaDestino = Banco.encontrarConta(numeroDestino);
+        System.out.print("Digite o valor para transferir: ");
+        float valor = input.nextFloat();
+        contaOrigem.transferir(valor, contaDestino);
     }
 
 }

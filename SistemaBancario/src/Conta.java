@@ -9,6 +9,11 @@ public class Conta {
     private static int contas = 1000;
 
     public Conta(Cliente dono, String agencia, TipoConta tipo) {
+        switch (tipo) {
+            case CORRENTE -> this.saldo = 100.00f;
+            case POUPANCA -> this.saldo = 50.00f;
+            case SALARIO -> this.saldo = 0.00f;
+        }
         this.dono = dono;
         this.agencia = agencia;
         this.tipo = tipo;
@@ -93,18 +98,15 @@ public class Conta {
             throw new IllegalArgumentException("Impossível sacar valor menor ou igual à 0!");
         }
         saldo -= valor;
-        System.out.printf("Saque no valor de R$%.2f realizado!", valor);
+        System.out.printf("Saque no valor de R$%.2f realizado!\n", valor);
     }
 
     public void depositar(float valor) {
-        if (valor > saldo) {
-            throw new IllegalArgumentException("Saldo insuficiente para o depósito!");
-        }
         if (valor <= 0) {
             throw new IllegalArgumentException("Impossível depositar valor menor ou igual à 0!");
         }
         saldo += valor;
-        System.out.printf("Depósito no valor de R$%.2f realizado!", valor);
+        System.out.printf("Depósito no valor de R$%.2f realizado!\n", valor);
     }
 
     public void transferir(float valor, Conta contaDestino) {
@@ -116,6 +118,8 @@ public class Conta {
         }
         this.saldo -= valor;
         contaDestino.saldo += valor;
+        System.out.printf("Transferência no valor de R%.2f realizado para conta número %d\n", valor,
+                contaDestino.getNumeroConta());
     }
 
     @Override
