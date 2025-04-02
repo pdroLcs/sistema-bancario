@@ -13,10 +13,10 @@ public class App {
                 opcao = input.nextInt();
                 switch (opcao) {
                     case 1:
-                        
+                        Banco.adicionarCliente();
                         break;
                     case 2:
-                        
+                        Banco.criarConta();
                         break;
                     case 3:
 
@@ -41,7 +41,7 @@ public class App {
                 System.out.println("Por favor, insira um número inválido!");
                 input.nextLine();
             }
-            input.close();;
         }
+        input.close();
     }
 }
