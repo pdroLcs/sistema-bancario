@@ -3,6 +3,9 @@ public class Cliente {
     private String nome;
     private int idade;
     private String cpf;
+    private int id;
+
+    private static int contadorId = 0;
 
     public Cliente(String nome, int idade, String cpf) {
         if (idade < 18) {
@@ -11,6 +14,7 @@ public class Cliente {
         this.nome = nome;
         this.idade = idade;
         this.cpf = cpf;
+        this.id = ++contadorId;
     }
 
     /**
@@ -53,6 +57,20 @@ public class Cliente {
      */
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    /**
+     * @return int return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
 }

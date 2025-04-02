@@ -117,4 +117,11 @@ public class Conta {
         this.saldo -= valor;
         contaDestino.saldo += valor;
     }
+
+    @Override
+    public String toString() {
+        return "Dono: %s\nNúmero: %d\nAgência: %s\nSaldo: R$%.2f\nTipo: %s\n".formatted(this.dono.getNome(),
+                this.numeroConta, this.agencia, this.saldo, this.tipo.name());
+    }
+
 }
