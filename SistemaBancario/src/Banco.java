@@ -29,7 +29,7 @@ public final class Banco {
             System.out.printf("Cliente cadastrado: Nome: %s | ID: %d\n", nome, proximoIdCliente);
             proximoIdCliente++;
         } catch (InputMismatchException e) {
-            System.out.println("Digite um número válido!");
+            System.out.println("Digite um nÃºmero vÃ¡lido!");
             input.nextLine();
         }
     }
@@ -75,36 +75,36 @@ public final class Banco {
             int id = input.nextInt();
             input.nextLine();
             if (!clientes.containsKey(id)) {
-                throw new IllegalArgumentException("Cliente não encontrado!");
+                throw new IllegalArgumentException("Cliente nÃ£o encontrado!");
             }
-            System.out.print("Digite a agência: ");
+            System.out.print("Digite a agÃªncia: ");
             String agencia = input.nextLine();
             TipoConta tipo = null;
             while (tipo == null) {
-                System.out.println("[1] CORRENTE\n[2] POUPANÇA\n[3] SALÁRIO");
+                System.out.println("[1] CORRENTE\n[2] POUPANÃ‡A\n[3] SALÃRIO");
                 System.out.print("Insira o tipo de conta: ");
                 int selecionaTipo = input.nextInt();
                 switch (selecionaTipo) {
                     case 1 -> tipo = TipoConta.CORRENTE;
                     case 2 -> tipo = TipoConta.POUPANCA;
                     case 3 -> tipo = TipoConta.SALARIO;
-                    default -> System.out.println("Opção inválida! Tente novamente!");
+                    default -> System.out.println("OpÃ§Ã£o invÃ¡lida! Tente novamente!");
                 }
             }
             Conta conta = new Conta(clientes.get(id), agencia, tipo);
             contas.put(proximoNumeroConta, conta);
-            System.out.printf("Conta criada: Número: %d | Tipo: %s\n",
+            System.out.printf("Conta criada: NÃºmero: %d | Tipo: %s\n",
                     conta.getNumeroConta(), tipo.name());
             proximoNumeroConta++;
         } catch (InputMismatchException e) {
-            System.out.println("Digite apenas números inteiros!");
+            System.out.println("Digite apenas nÃºmeros inteiros!");
             input.nextLine();
         }
     }
 
     public static void listarClientes() {
         if (clientes.isEmpty()) {
-            System.out.println("Não existe nenhum cliente cadastrado!");
+            System.out.println("NÃ£o existe nenhum cliente cadastrado!");
             return;
         }
         for (Cliente c : clientes.values()) {
@@ -114,7 +114,7 @@ public final class Banco {
 
     public static void listarContas() {
         if (contas.isEmpty()) {
-            System.out.println("Não existe nenhuma conta cadastrada!");
+            System.out.println("NÃ£o existe nenhuma conta cadastrada!");
             return;
         }
         for (Conta c : contas.values()) {
@@ -129,7 +129,7 @@ public final class Banco {
                 return c;
             }
         }
-        throw new IllegalArgumentException("Conta não encontrada!");
+        throw new IllegalArgumentException("Conta nÃ£o encontrada!");
     }
 
     public static Conta encontrarConta(String strId) {
@@ -141,20 +141,20 @@ public final class Banco {
                 }
             }
         } catch (NumberFormatException e) {
-            System.out.println("Erro: O número fornecido não é um número válido!");
+            System.out.println("Erro: O nÃºmero fornecido nÃ£o Ã© um nÃºmero vÃ¡lido!");
         }
-        throw new IllegalArgumentException("Conta não encontrada!");
+        throw new IllegalArgumentException("Conta nÃ£o encontrada!");
     }
 
     public static void infoConta() {
-        System.out.print("Digite o número da conta: ");
+        System.out.print("Digite o nÃºmero da conta: ");
         int numero = input.nextInt();
         Conta conta = Banco.encontrarConta(numero);
         System.out.println(conta.toString());
     }
 
     public static void sacar() {
-        System.out.print("Digite o número da conta: ");
+        System.out.print("Digite o nÃºmero da conta: ");
         String numero = input.nextLine();
         Conta conta = encontrarConta(numero);
         System.out.print("Digite o valor para sacar: ");
@@ -163,7 +163,7 @@ public final class Banco {
     }
 
     public static void depositar() {
-        System.out.print("Digite o número da conta: ");
+        System.out.print("Digite o nÃºmero da conta: ");
         int numero = input.nextInt();
         Conta conta = encontrarConta(numero);
         System.out.print("Digite o valor para depositar: ");
@@ -172,10 +172,10 @@ public final class Banco {
     }
 
     public static void tranferir() {
-        System.out.print("Digite o número da conta origem: ");
+        System.out.print("Digite o nÃºmero da conta origem: ");
         int numeroOrigem = input.nextInt();
         Conta contaOrigem = encontrarConta(numeroOrigem);
-        System.out.print("Digite o número da conta destino: ");
+        System.out.print("Digite o nÃºmero da conta destino: ");
         int numeroDestino = input.nextInt();
         Conta contaDestino = Banco.encontrarConta(numeroDestino);
         System.out.print("Digite o valor para transferir: ");

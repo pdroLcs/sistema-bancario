@@ -11,13 +11,13 @@ public class Cliente {
 
     public Cliente(String nome, int idade, String cpf) {
         if (nome.isBlank() || nome.equals(null)) {
-            throw new NullPointerException("O nome n„o pode ser vazio!");
+            throw new NullPointerException("O nome n√£o pode ser vazio!");
         }
         if (idade < 18) {
-            throw new IllegalArgumentException("VocÍ n„o pode criar uma conta sendo menor de 18 anos!");
+            throw new IllegalArgumentException("Voc√™ n√£o pode criar uma conta sendo menor de 18 anos!");
         }
         if (!Pattern.matches("^\\d{3}\\.?\\d{3}\\.?\\d{3}-?\\d{2}$", cpf)) {
-            throw new IllegalArgumentException("CPF inv·lido! O formato correto È 000.000.000-00");
+            throw new IllegalArgumentException("CPF inv√°lido! O formato correto √© 000.000.000-00");
         }
         this.nome = nome;
         this.idade = idade;
