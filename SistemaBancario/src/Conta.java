@@ -95,7 +95,7 @@ public class Conta {
             throw new IllegalArgumentException("Saldo insuficiente para o saque!");
         }
         if (valor <= 0) {
-            throw new IllegalArgumentException("ImpossÃ­vel sacar valor menor ou igual Ã  0!");
+            throw new IllegalArgumentException("Impossível sacar valor menor ou igual à 0!");
         }
         saldo -= valor;
         System.out.printf("Saque no valor de R$%.2f realizado!\n", valor);
@@ -103,28 +103,28 @@ public class Conta {
 
     public void depositar(float valor) {
         if (valor <= 0) {
-            throw new IllegalArgumentException("ImpossÃ­vel depositar valor menor ou igual Ã  0!");
+            throw new IllegalArgumentException("Impossível depositar valor menor ou igual à 0!");
         }
         saldo += valor;
-        System.out.printf("DepÃ³sito no valor de R$%.2f realizado!\n", valor);
+        System.out.printf("Depósito no valor de R$%.2f realizado!\n", valor);
     }
 
     public void transferir(float valor, Conta contaDestino) {
         if (valor > saldo) {
-            throw new IllegalArgumentException("Saldo insuficiente para a transferÃªncia!");
+            throw new IllegalArgumentException("Saldo insuficiente para a transferência!");
         }
         if (valor <= 0) {
-            throw new IllegalArgumentException("ImpossÃ­vel tranferir valor menor ou igual Ã  0!");
+            throw new IllegalArgumentException("Impossível tranferir valor menor ou igual à 0!");
         }
         this.saldo -= valor;
         contaDestino.saldo += valor;
-        System.out.printf("TransferÃªncia no valor de R%.2f realizado para conta nÃºmero %d\n", valor,
+        System.out.printf("Transferência no valor de R%.2f realizado para conta número %d\n", valor,
                 contaDestino.getNumeroConta());
     }
 
     @Override
     public String toString() {
-        return "Dono: %s\nNÃºmero: %d\nAgÃªncia: %s\nSaldo: R$%.2f\nTipo: %s\n".formatted(this.dono.getNome(),
+        return "Dono: %s\nNúmero: %d\nAgência: %s\nSaldo: R$%.2f\nTipo: %s\n".formatted(this.dono.getNome(),
                 this.numeroConta, this.agencia, this.saldo, this.tipo.name());
     }
 

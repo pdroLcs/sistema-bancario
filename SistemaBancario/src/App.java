@@ -8,9 +8,10 @@ public class App {
         while (opcao != 9) {
             System.out.println(
                     "[1] CADASTRAR CLIENTE\n[2] CRIAR CONTA\n[3] SACAR\n[4] DEPOSITAR\n[5] TRANSFERIR\n[6] VERIFICAR SALDO\n[7] LISTAR CLIENTES\n[8] LISTAR CONTAS\n[9] SAIR");
-            System.out.print("Digite sua opÃ§Ã£o: ");
+            System.out.print("Digite sua opção: ");
             try {
                 opcao = input.nextInt();
+                input.nextLine();
                 switch (opcao) {
                     case 1 -> Banco.adicionarCliente();
                     case 2 -> Banco.criarConta();
@@ -21,12 +22,13 @@ public class App {
                     case 7 -> Banco.listarClientes();
                     case 8 -> Banco.listarContas();
                     case 9 -> System.out.println("Programa encerrado!");
-                    default -> System.out.println("OpÃ§Ã£o invÃ¡lida!");
+                    default -> System.out.println("Opção inválida!");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Por favor, insira um nÃºmero invÃ¡lido!");
-                input.nextLine();
+                System.out.println("Por favor, insira um número válido!");
             } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            } catch (NullPointerException e) {
                 System.out.println(e.getMessage());
             }
         }

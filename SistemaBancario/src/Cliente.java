@@ -1,3 +1,5 @@
+import java.util.regex.Pattern;
+
 public class Cliente {
 
     private String nome;
@@ -8,8 +10,14 @@ public class Cliente {
     private static int contadorId = 0;
 
     public Cliente(String nome, int idade, String cpf) {
+        if (nome.isBlank() || nome.equals(null)) {
+            throw new NullPointerException("O nome não pode ser vazio!");
+        }
         if (idade < 18) {
-            throw new IllegalArgumentException("VocÃª nÃ£o pode criar uma conta sendo menor de 18 anos!");
+            throw new IllegalArgumentException("Você não pode criar uma conta sendo menor de 18 anos!");
+        }
+        if (!Pattern.matches("^\\d{3}\\.?\\d{3}\\.?\\d{3}-?\\d{2}$", cpf)) {
+            throw new IllegalArgumentException("CPF inválido! O formato correto é 000.000.000-00");
         }
         this.nome = nome;
         this.idade = idade;
