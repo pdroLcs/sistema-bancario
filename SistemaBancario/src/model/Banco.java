@@ -1,3 +1,5 @@
+package model;
+
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Map;
@@ -32,6 +34,11 @@ public final class Banco {
             System.out.println("Digite um número válido!");
             input.nextLine();
         }
+    }
+
+    public static void adicionarCliente(Cliente cliente) {
+        clientes.put(proximoIdCliente, cliente);
+        proximoIdCliente++;
     }
 
     /*
