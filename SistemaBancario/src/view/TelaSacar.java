@@ -134,11 +134,15 @@ public class TelaSacar extends javax.swing.JFrame {
         }
         int id = Integer.parseInt(idString);
         float valor = Float.parseFloat(valorString);
-        Conta conta = Banco.encontrarConta(id);
-        conta.sacar(valor);
-        MensagemUtils.mensagem(this, String.format("Saque no valor de R$%.2f realizado!", valor),
-                "Saque realizado", JOptionPane.INFORMATION_MESSAGE);
-        this.dispose();
+        try {
+            Conta conta = Banco.encontrarConta(id);
+            conta.sacar(valor);
+            MensagemUtils.mensagem(this, String.format("Saque no valor de R$%.2f realizado!", valor),
+                    "Saque realizado", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        } catch (IllegalArgumentException e) {
+            MensagemUtils.mensagem(this, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnSacarActionPerformed
 
     /**
