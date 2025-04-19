@@ -108,6 +108,11 @@ public final class Banco {
             input.nextLine();
         }
     }
+    
+    public static void criarConta(Conta conta) {
+        contas.put(proximoNumeroConta, conta);
+        proximoNumeroConta++;
+    }
 
     public static void listarClientes() {
         if (clientes.isEmpty()) {
@@ -153,6 +158,15 @@ public final class Banco {
         throw new IllegalArgumentException("Conta não encontrada!");
     }
 
+    public static Cliente encontrarCliente(int id) {
+        for (Cliente c : clientes.values()) {
+            if (c.getId() == id) {
+                return c;
+            }
+        }
+        throw new IllegalArgumentException("Cliente não encontrado!");
+    }
+    
     public static void infoConta() {
         System.out.print("Digite o número da conta: ");
         int numero = input.nextInt();

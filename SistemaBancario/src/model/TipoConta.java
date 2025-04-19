@@ -1,7 +1,20 @@
 package model;
 
 public enum TipoConta {
-    CORRENTE,
-    POUPANCA,
-    SALARIO
+    CORRENTE("Corrente"),
+    POUPANCA("Poupança"),
+    SALARIO("Salário");
+    
+    private final String nome;
+    
+    TipoConta(String nome) {
+        this.nome = nome;
+    }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
+    
+    
 }

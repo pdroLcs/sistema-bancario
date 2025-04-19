@@ -5,8 +5,10 @@
 package view;
 
 import java.util.InputMismatchException;
+import javax.swing.JOptionPane;
 import model.Banco;
 import model.Cliente;
+import util.MensagemUtils;
 
 /**
  *
@@ -38,8 +40,10 @@ public class TelaCadastrarCliente extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         inputCpf = new javax.swing.JTextField();
         btnCadastrarCliente = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastrar cliente");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Nome:");
@@ -64,14 +68,25 @@ public class TelaCadastrarCliente extends javax.swing.JFrame {
             }
         });
 
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(74, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnCadastrarCliente)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCadastrarCliente))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
@@ -82,12 +97,12 @@ public class TelaCadastrarCliente extends javax.swing.JFrame {
                             .addComponent(inputNome)
                             .addComponent(inputIdade)
                             .addComponent(inputCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGap(40, 40, 40))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(67, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(inputNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -100,8 +115,10 @@ public class TelaCadastrarCliente extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(inputCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnCadastrarCliente)
-                .addGap(30, 30, 30))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCadastrarCliente)
+                    .addComponent(btnCancelar))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -120,7 +137,8 @@ public class TelaCadastrarCliente extends javax.swing.JFrame {
                 .addGap(369, 369, 369))
         );
 
-        setBounds(0, 0, 379, 317);
+        setSize(new java.awt.Dimension(379, 254));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarClienteActionPerformed
@@ -130,13 +148,24 @@ public class TelaCadastrarCliente extends javax.swing.JFrame {
             String cpf = inputCpf.getText().trim();
             Cliente cliente = new Cliente(nome, idade, cpf);
             Banco.adicionarCliente(cliente);
-            System.out.printf("Cliente cadastrado: Nome: %s | ID: %d\n", nome, cliente.getId());
-        } catch (InputMismatchException e) {
-            System.out.println("Digite um n�mero v�lido!");
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            //System.out.printf("Cliente cadastrado: Nome: %s | ID: %d\n", nome, cliente.getId());
+            MensagemUtils.mensagem(this, String.format("Cliente cadastrado com sucesso!\nNome: %s\nID: %d", nome, cliente.getId()), 
+                    "Cadastro realizado", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        } catch (NumberFormatException e) {
+            //System.out.println("Digite um número válido!");
+            MensagemUtils.mensagem(this, "Idade inválida! Digite um número inteiro!", "Erro de entrada", JOptionPane.ERROR_MESSAGE);
+        } catch (IllegalArgumentException | NullPointerException e) {
+            //System.out.println(e.getMessage());
+            MensagemUtils.mensagem(this, e.getMessage(), "Erro de cadastro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnCadastrarClienteActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        inputNome.setText("");
+        inputIdade.setText("");
+        inputCpf.setText("");
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,6 +204,7 @@ public class TelaCadastrarCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrarCliente;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JTextField inputCpf;
     private javax.swing.JTextField inputIdade;
     private javax.swing.JTextField inputNome;

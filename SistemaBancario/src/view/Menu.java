@@ -35,6 +35,7 @@ public class Menu extends javax.swing.JFrame {
         btnVerificarSaldo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu");
 
         btnCadastrarCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnCadastrarCliente.setText("Cadastrar cliente");
@@ -46,18 +47,43 @@ public class Menu extends javax.swing.JFrame {
 
         btnCriarConta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnCriarConta.setText("Criar conta");
+        btnCriarConta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCriarContaActionPerformed(evt);
+            }
+        });
 
         btnSacar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnSacar.setText("Sacar");
+        btnSacar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSacarActionPerformed(evt);
+            }
+        });
 
         btnDepositar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnDepositar.setText("Depositar");
+        btnDepositar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDepositarActionPerformed(evt);
+            }
+        });
 
         btnTransferir.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnTransferir.setText("Transferir");
+        btnTransferir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTransferirActionPerformed(evt);
+            }
+        });
 
         btnVerificarSaldo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnVerificarSaldo.setText("Verificar saldo");
+        btnVerificarSaldo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerificarSaldoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -104,11 +130,32 @@ public class Menu extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarClienteActionPerformed
         new TelaCadastrarCliente().setVisible(true);
     }//GEN-LAST:event_btnCadastrarClienteActionPerformed
+
+    private void btnCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarContaActionPerformed
+        new TelaCriarConta().setVisible(true);
+    }//GEN-LAST:event_btnCriarContaActionPerformed
+
+    private void btnDepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositarActionPerformed
+        new TelaDepositar().setVisible(true);
+    }//GEN-LAST:event_btnDepositarActionPerformed
+
+    private void btnVerificarSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerificarSaldoActionPerformed
+        new TelaVerificarSaldo().setVisible(true);
+    }//GEN-LAST:event_btnVerificarSaldoActionPerformed
+
+    private void btnSacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacarActionPerformed
+        new TelaSacar().setVisible(true);
+    }//GEN-LAST:event_btnSacarActionPerformed
+
+    private void btnTransferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferirActionPerformed
+        new TelaTransferir().setVisible(true);
+    }//GEN-LAST:event_btnTransferirActionPerformed
 
     /**
      * @param args the command line arguments
